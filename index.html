@@ -10,7 +10,7 @@
   window.onload = function() {
     const parentContent = document.getElementById('js-timer-container');
     const time = document.getElementById('js-timer');
-    const btn = document.getElementById('js-start-btn');
+    const btnStart = document.getElementById('js-start-btn');
     const btnStop = document.getElementById('js-stop-btn');
     const btnClear = document.getElementById('js-clear-btn');
     const initialTime = 180;
@@ -24,8 +24,6 @@
     }
 
     showCount();
-
-
 
     function startTimer(){
       timer = setInterval(function(){
@@ -45,7 +43,7 @@
       clearInterval(timer);
     }
 
-    btn.addEventListener('click', startTimer);
+    btnStart.addEventListener('click', startTimer);
     btnStop.addEventListener('click', stopTimer);
     btnClear.addEventListener('click', clearTimer);
 
