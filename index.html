@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3-minutes-timer</title>
+</head>
+<script>
+  window.onload = function() {
+    const parentContent = document.getElementById('js-timer-container');
+    const time = document.getElementById('js-timer');
+    const btn = document.getElementById('js-start-btn');
+    const btnStop = document.getElementById('js-stop-btn');
+    const btnClear = document.getElementById('js-clear-btn');
+    const initialTime = 180;
+    let setTime = initialTime;
+    let timer = '';
+    const strings = `<p id='js-timer' class='timer-text'>${initialTime}</p>`;
+
+    // 初期表示
+    function showCount() {
+      time.innerHTML = strings;
+    }
+
+    showCount();
+
+
+
+    function startTimer(){
+      timer = setInterval(function(){
+        if (setTime !== 0) {
+          time.innerHTML = --setTime;
+        }
+      }, 1000);
+    }
+
+    function stopTimer(){
+      clearInterval(timer);
+    }
+
+    function clearTimer() {
+      time.innerHTML = initialTime;
+      setTime = initialTime;
+      clearInterval(timer);
+    }
+
+    btn.addEventListener('click', startTimer);
+    btnStop.addEventListener('click', stopTimer);
+    btnClear.addEventListener('click', clearTimer);
+
+  }
+</script>
+<style>
+.timer {
+  width: 400px;
+  margin: 0 auto;
+}
+.timer-text {
+  font-size: 190px;
+  margin-bottom: 0;
+  text-align: center;
+}
+.btn-container {
+  display: block;
+  width: 700px;
+  margin: 0 auto;
+}
+.btn-container:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.btn {
+  float: left;
+  width: 30%;
+  margin-left: 3%;
+  font-size: 25px;
+  color: #555;
+  background-color: #fff;
+  border: solid 3px #555;
+  cursor: pointer;
+}
+.btn:first-child {
+  margin-left: 0;
+}
+</style>
+<body>
+<div id='js-timer-container' class='timer'>
+  <p id='js-timer' class='timer-text'></p>
+</div>
+<div class='btn-container'>
+  <button id='js-start-btn' class='btn'>start</button>
+  <button id='js-stop-btn' class='btn'>stop</button>
+  <button id='js-clear-btn' class='btn'>clear</button>
+</div>
+</body>
+</html>
